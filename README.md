@@ -29,6 +29,25 @@ The ports open are related to Windows file and printer sharing:
 139: NetBIOS session service
 445: SMB (Server Message Block)
 
+Open ports can expose a system to various security risks if the services running on them are misconfigured, outdated, or vulnerable. For example:
+Port 135 (MS RPC)
+Used for Windows Remote Procedure Call.
+Vulnerable to DCOM and MSBlaster exploits.
+Attackers can use it to enumerate services or launch remote code execution.
+Port 139 (NetBIOS Session Service)
+Used for file and printer sharing.
+Can be exploited for SMB relay attacks or to gather sensitive system information.
+Port 445 (Microsoft-DS / SMB)
+High-risk port due to past exploits like EternalBlue (used in WannaCry ransomware).
+Allows attackers to spread malware or access shared resources if SMB is unprotected.
+
+General Risks of Open Ports
+Unauthorized Access: Attackers may connect to open services and try default or weak credentials.
+Information Leakage: Open services can reveal OS details, usernames, or configuration data.
+Vulnerability Exposure: Outdated services might have known exploits available publicly.
+Lateral Movement: Attackers can use open ports to move through the network after gaining access.
+
+
 ![img alt](https://github.com/swamy-2006/SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK/blob/489cbbf218469e70ad655e397597ea803cd15a7d/Screenshot%202025-08-04%20211854.png)
 Second Scan (nmap -sS -p 22,80,443 10.140.63.210)
 This was a quick SYN scan on ports 22, 80, and 443.
