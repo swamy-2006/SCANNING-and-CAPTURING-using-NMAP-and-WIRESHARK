@@ -28,6 +28,31 @@ The ports open are related to Windows file and printer sharing:
 135: MS RPC – used by services like DCOM
 139: NetBIOS session service
 445: SMB (Server Message Block)
+
+![img alt](https://github.com/swamy-2006/SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK/blob/489cbbf218469e70ad655e397597ea803cd15a7d/Screenshot%202025-08-04%20211854.png)
+Second Scan (nmap -sS -p 22,80,443 10.140.63.210)
+This was a quick SYN scan on ports 22, 80, and 443.
+The target is up.
+All three ports are closed:
+22 (SSH
+80 (HTTP)
+443 (HTTPS)
+This means no web or SSH services are running on the system.
+
+#Nmap Scan Explanation
+Nmap is a network scanning tool used to discover hosts and services on a network.
+The command nmap -T4 -A -v 10.140.63.210 performs an aggressive scan with OS detection, version detection, script scanning, and traceroute.
+It detected that ports 135, 139, and 445 were open, indicating the system is running Windows services like RPC and SMB.
+Another scan with nmap -sS -p 22,80,443 10.140.63.210 showed that these specific ports were closed.
+SYN scans (-sS) send only SYN packets and wait for responses (RST or SYN-ACK) without completing the TCP handshake.
+
+#Wireshark Packet Capture Explanation
+Wireshark is a packet analyzer used to capture and analyze network traffic in real-time.
+The capture shows TCP SYN packets sent to port 135, and TCP RST packets received in response, meaning the port is closed.
+ICMP "Destination unreachable" packets suggest that some ports or protocols on the system are blocked or not responding.
+This confirms the results from Nmap and provides low-level packet details for verification.
+
+
 ❖ Well-Known Ports (0–1023):
 ➢ Used for standard services.
 ➢ Examples:
@@ -37,16 +62,6 @@ The ports open are related to Windows file and printer sharing:
 ■ SSH: Port 22
 ■ SMTP: Port 25
 ■ DNS: Port 53
-
-
-
-
-
-
-
-
-
-
 
 #Network Reconnaissance & Scanning
 Network reconnaissance is the process of gathering information about systems and services in a network before performing security analysis. It helps identify active hosts, open ports, and running services to assess network security.
