@@ -3,6 +3,7 @@ Scanning and Capturing using Nmap and Wireshark This repository demonstrates bas
 
 
 DOWNLOAD NMAP FROM HERE: [NMAP](https://nmap.org/download.html#windows)
+
 DOWNLOAD WIRESHARK FROM HERE: [WIRESHARK](https://www.wireshark.org/#download)
 
 {NOTE: These links are from the orignal websites)
@@ -82,13 +83,60 @@ Lateral Movement: Attackers can use open ports to move through the network after
 
 
 Second Scan (nmap -sS -p 22,80,443 10.140.63.210)
+
 This was a quick SYN scan on ports 22, 80, and 443.
+
 The target is up.
+
 All three ports are closed:
+
 22 (SSH
+
 80 (HTTP)
+
 443 (HTTPS)
+
 This means no web or SSH services are running on the system.
+
+
+
+
+WIRESHARK(http analysis)
+
+
+![img alt](https://github.com/swamy-2006/SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK/blob/f20b9064f2ee4a7e213c7c575336d6c51281f4fd/Screenshot%202025-08-06%20171349.png)
+Insecure HTTP Login Page
+This screenshot shows a web browser viewing a login page served over an unencrypted HTTP connection. It represents the user's perspective when interacting with an insecure web application.
+
+Key Features:
+"Not Secure" Warning: The browser's address bar prominently displays a "Not secure" warning.  This is a standard security feature in modern browsers to alert users when a page requesting sensitive information (like a password) is not using an encrypted connection.
+
+Login Form: The page presents a standard form asking for a username and password.
+[testphp.vulnhub.com](http://test.vulweb.com)      IP:44.228.249.3
+Vulnerable by Design: This specific website (testphp.vulnweb.com) is a well-known, intentionally vulnerable application created for security professionals to practice testing and hacking skills.
+
+Context and Significance
+This image shows the cause of the security risk illustrated in the corresponding Wireshark capture. When a user fills out this form and clicks "login," their credentials are sent across the network in plain text. This allows an attacker to easily intercept and read the sensitive data. It's the "open door" that makes a credential sniffing attack possible.
+
+![img alt](https://github.com/swamy-2006/SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK/blob/main/Screenshot%202025-08-06%20171638.png)
+Wireshark Capture: Unencrypted HTTP Login
+This image is a screenshot from Wireshark, a network protocol analyzer. It demonstrates a significant security vulnerability: the transmission of login credentials in plain text over an unencrypted HTTP connection.
+
+Key Observations from the Capture:
+Packet Analysis: The highlighted packet (No. 2177) is an HTTP POST request, which is the method used to send form data from a browser to a web server.
+
+Target: The request is sent to /wp-login.php, the standard login page for a WordPress website.
+
+Unencrypted Data: The connection uses the HTTP protocol. Because it is not encrypted with HTTPS, all data within the packet is visible to anyone monitoring the network.
+
+Exposed Credentials: The "HTML Form URL Encoded" section in the packet details pane clearly displays the captured credentials:
+
+Username (log): admin
+
+Password (pwd): admin
+
+
+http is  unsecure
 
 #Nmap Scan Explanation
 
@@ -106,8 +154,9 @@ SYN scans (-sS) send only SYN packets and wait for responses (RST or SYN-ACK) wi
 
 
 
-#Wireshark Packet Capture Explanation
 
+
+#Wireshark Packet Capture Explanation
 
 Wireshark is a packet analyzer used to capture and analyze network traffic in real-time.
 
