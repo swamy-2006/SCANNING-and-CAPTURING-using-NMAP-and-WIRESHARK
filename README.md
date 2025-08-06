@@ -85,7 +85,9 @@ All three ports are closed:
 22 (SSH)
 
 80 (HTTP)
+
 443 (HTTPS)
+
 This means no web or SSH services are running on the system.
 ___________________________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -102,10 +104,15 @@ Key Features:
 "Not Secure" Warning: The browser's address bar prominently displays a "Not secure" warning.  This is a standard security feature in modern browsers to alert users when a page requesting sensitive information (like a password) is not using an encrypted connection.
 
 Login Form: The page presents a standard form asking for a username and password.
+
 [testphp.vulnhub.com](http://test.vulweb.com)      IP:44.228.249.3
+
 Vulnerable by Design: This specific website (testphp.vulnweb.com) is a well-known, intentionally vulnerable application created for security professionals to practice testing and hacking skills.
 
+
+
 Context and Significance
+
 This image shows the cause of the security risk illustrated in the corresponding Wireshark capture. When a user fills out this form and clicks "login," their credentials are sent across the network in plain text. This allows an attacker to easily intercept and read the sensitive data. It's the "open door" that makes a credential sniffing attack possible.
 ___________________________________________________________________________________________________________________________________________________________________________________________________________
 ![img alt](https://github.com/swamy-2006/SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK/blob/main/Screenshot%202025-08-06%20171638.png)
