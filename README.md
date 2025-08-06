@@ -1,4 +1,4 @@
-# SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK
+## SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK
 Scanning and Capturing using Nmap and Wireshark This repository demonstrates basic network reconnaissance using Nmap and Wireshark. The main goal is to understand how to scan a local network for active hosts, identify open ports, and analyze network traffic for security insights.
 
 
@@ -93,7 +93,7 @@ ________________________________________________________________________________
 
 __________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-WIRESHARK(http analysis)
+# WIRESHARK(http analysis)
 
 
 ![img alt](https://github.com/swamy-2006/SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK/blob/f20b9064f2ee4a7e213c7c575336d6c51281f4fd/Screenshot%202025-08-06%20171349.png)
@@ -138,7 +138,7 @@ __
 
 ___________________________________________________________________________________________________________________________________________________________________________________________________________
 _____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-#Nmap Scan Explanation
+# Nmap Scan Explanation
 
 Nmap is a network scanning tool used to discover hosts and services on a network.
 
@@ -156,7 +156,7 @@ SYN scans (-sS) send only SYN packets and wait for responses (RST or SYN-ACK) wi
 
 ___________________________________________________________________________________________________________________________________________________________________________________________________________
 
-#Wireshark Packet Capture Explanation
+# Wireshark Packet Capture Explanation
 
 Wireshark is a packet analyzer used to capture and analyze network traffic in real-time.
 
@@ -188,17 +188,17 @@ This confirms the results from Nmap and provides low-level packet details for ve
 
 
 ___________________________________________________________________________________________________________________________________________________________________________________________________________
-#Network Reconnaissance & Scanning
+# Network Reconnaissance & Scanning
 
 Network reconnaissance is the process of gathering information about systems and services in a network before performing security analysis. It helps identify active hosts, open ports, and running services to assess network security.
 
 
-#Port Scanning
+# Port Scanning
 
 Port scanning is a technique used to find which ports on a system are open and listening for connections. Each port corresponds to a specific service (e.g., port 80 for HTTP, port 443 for HTTPS). Open ports can be entry points for attackers, so scanning helps in vulnerability assessment.
 
 
-#TCP SYN Scan
+# TCP SYN Scan
 
 A TCP SYN scan is one of the most common and stealthy scanning techniques. It works by sending a SYN packet (used to start a TCP connection) to the target port:
 If the port is open, the target replies with a SYN-ACK packet.
@@ -206,12 +206,12 @@ If the port is closed, the target sends an RST (reset) packet.
 This method is fast and doesn’t complete the full TCP handshake, making it less likely to be logged by the target system.
 
 
-#IP Ranges
+# IP Ranges
 
 Instead of scanning one IP at a time, you can scan an entire IP range (e.g., 192.168.0.1–192.168.0.255) to find multiple active devices on the same network. This is useful for discovering hosts in a local or enterprise network.
 
 
-#Open Ports
+# Open Ports
 
 Open ports indicate that a service is running on that port and is accepting connections. Examples:
 
@@ -224,7 +224,7 @@ Port 443 – HTTPS (Secure Web)
 Attackers target open ports, so administrators must monitor and secure them.
 
 
-#Network Security Basics
+# Network Security Basics
 
 
 Use Firewalls: Block unnecessary ports and restrict access.
@@ -238,11 +238,11 @@ Disable Unused Services: Reduce attack surface.
 ANSWERS TO SOME QUESTIONS about the PORTS and TCP
 
 
-1. What is an open port?
+# 1. What is an open port?
 An open port is a network port on a computer that is configured to accept incoming data packets. Think of it like an open door on a building. Each door is numbered (the port number) and leads to a specific service or application running inside (like a mailroom or a front desk). For example, port 80 is the standard "door" for web traffic (HTTP). An open port means a service is actively listening for and ready to communicate with other devices.
 
 
-2. How does Nmap perform a TCP SYN scan?
+# 2. How does Nmap perform a TCP SYN scan?
 A TCP SYN scan, often called a "half-open" scan, is a popular and stealthy way to check for open ports. It works by manipulating the standard three-way handshake used to establish a TCP connection (SYN -> SYN/ACK -> ACK).
 
 Here’s the process:
@@ -259,7 +259,7 @@ If there is no response, the port is likely filtered by a firewall.
 
 Reset: As soon as Nmap receives the SYN/ACK from an open port, it sends an RST packet to tear down the connection. By never completing the handshake, the scan is less likely to be logged by the target application, making it stealthy.
 
-3. What risks are associated with open ports?
+# 3. What risks are associated with open ports?
 The main risk of an open port is that it provides a potential attack vector. An open port signifies a running service, and if that service has a vulnerability, an attacker can exploit it to compromise the system.
 
 Key risks include:
@@ -272,7 +272,7 @@ Information Leakage: Some services can be tricked into revealing sensitive infor
 
 Denial-of-Service (DoS) Attacks: Open ports can be flooded with traffic, overwhelming the service and making it unavailable to legitimate users.
 
-4. Explain the difference between TCP and UDP scanning.
+# 4. Explain the difference between TCP and UDP scanning.
 The difference lies in how the two protocols work.
 
 TCP Scanning: TCP is a connection-oriented protocol. It uses a handshake to establish a reliable connection. This makes TCP scanning very accurate. When a scanner probes a TCP port, it gets a definitive response: a SYN/ACK for an open port or an RST for a closed one.
@@ -285,7 +285,7 @@ When a UDP packet is sent to an open port, there is typically no response. The s
 
 In short, TCP scanning is fast and reliable; UDP scanning is slow and depends on inference.
 
-5. How can open ports be secured?
+# 5. How can open ports be secured?
 Securing open ports is about managing and minimizing the attack surface. The best practices follow the principle of least privilege.
 
 Close Unnecessary Ports: The most effective method. If a service isn't needed, shut it down so the corresponding port is no longer open.
@@ -298,7 +298,7 @@ Strong Configuration: Harden the configuration of services by changing default p
 
 Monitor Traffic: Use an Intrusion Detection System (IDS) or Intrusion Prevention System (IPS) to monitor traffic for suspicious activity targeting open ports.
 
-6. What is a firewall's role regarding ports?
+# 6. What is a firewall's role regarding ports?
 A firewall acts as a gatekeeper for network traffic flowing in and out of a device or network. 🛡️ Its primary role regarding ports is to enforce access control rules.
 
 Specifically, a firewall can:
@@ -311,7 +311,7 @@ Filter Traffic: Allow traffic to a port based on specific conditions, such as th
 
 By filtering traffic, a firewall drastically reduces the exposure of open ports to potential attackers on the internet.
 
-7. What is a port scan and why do attackers perform it?
+# 7. What is a port scan and why do attackers perform it?
 A port scan is a technique used to probe a server or host for open ports. The scan involves sending a series of messages to different ports to elicit responses and identify which services are available.
 
 Attackers perform port scans during the reconnaissance phase of an attack. It's like a burglar casing a neighborhood to find houses with unlocked doors or open windows. The goal is to gather critical intelligence, including:
@@ -324,7 +324,7 @@ The versions of the services and the operating system, which helps identify pote
 
 This information allows an attacker to create a map of the target and choose the most promising vector for an attack.
 
-8. How does Wireshark complement port scanning?
+# 8. How does Wireshark complement port scanning?
 If a port scanner like Nmap tells you what is happening (e.g., "port 22 is open"), a packet analyzer like Wireshark tells you how and shows you the raw conversation. They are powerful tools that complement each other.
 
 Verification and Learning: You can run Wireshark while performing a port scan to see the exact packets being exchanged. This helps you understand precisely how different scan types work (e.g., you can visually confirm the SYN, SYN/ACK, and RST packets of a SYN scan).
