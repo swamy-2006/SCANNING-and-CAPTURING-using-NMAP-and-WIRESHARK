@@ -15,91 +15,81 @@ Target: 10.140.63.210
 
 Scan Type: nmap -T4 -A -v 10.140.63.210
 This means:
-
 -T4: Aggressive timing template for faster scanning
-
 -A: Enable OS detection, version detection, script scanning, and traceroute
-
 -v: Verbose output
 
 📄 Key Findings
 ✅ Open Ports
-
 Port	State	Service	Version
-
-135	open	msrpc	Microsoft Windows RPC
-
-139	open	netbios-ssn	Microsoft Windows netbios-ssn
-
-445	open	microsoft-ds	Microsoft Windows SMB
+*135	open	msrpc	Microsoft Windows RPC
+*139	open	netbios-ssn	Microsoft Windows netbios-ssn
+*445	open	microsoft-ds	Microsoft Windows SMB
 
 
 This tells us:
 
-The target is likely a Windows machine.
-
-The ports open are related to Windows file and printer sharing:
-
-135: MS RPC – used by services like DCOM
-
-139: NetBIOS session service
-
-445: SMB (Server Message Block)
+*The target is likely a Windows machine.
+*The ports open are related to Windows file and printer sharing:
+*135: MS RPC – used by services like DCOM
+*139: NetBIOS session service
+*445: SMB (Server Message Block)
 
 
 
 Open ports can expose a system to various security risks if the services running on them are misconfigured, outdated, or vulnerable. For example:
 
-Port 135 (MS RPC)
 
-Used for Windows Remote Procedure Call.
+*Port 135 (MS RPC) 
 
-Vulnerable to DCOM and MSBlaster exploits.
+*Used for Windows Remote Procedure Call. 
 
-Attackers can use it to enumerate services or launch remote code execution.
+*Vulnerable to DCOM and MSBlaster exploits. 
 
-Port 139 (NetBIOS Session Service)
+*Attackers can use it to enumerate services or launch remote code execution 
 
-Used for file and printer sharing.
+*Port 139 (NetBIOS Session Service) 
 
-Can be exploited for SMB relay attacks or to gather sensitive system information.
+*Used for file and printer sharing. 
 
-Port 445 (Microsoft-DS / SMB)
+*Can be exploited for SMB relay attacks or to gather sensitive system information. 
 
-High-risk port due to past exploits like EternalBlue (used in WannaCry ransomware).
-Allows attackers to spread malware or access shared resources if SMB is unprotected.
+*Port 445 (Microsoft-DS / SMB)  
+
+*High-risk port due to past exploits like EternalBlue (used in WannaCry ransomware). 
+
+*Allows attackers to spread malware or access shared resources if SMB is unprotected. 
 
 
 
 General Risks of Open Ports
-Unauthorized Access: Attackers may connect to open services and try default or weak credentials.
-Information Leakage: Open services can reveal OS details, usernames, or configuration data.
-Vulnerability Exposure: Outdated services might have known exploits available publicly.
-Lateral Movement: Attackers can use open ports to move through the network after gaining access.
 
+*Unauthorized Access: Attackers may connect to open services and try default or weak credentials.
 
+*Information Leakage: Open services can reveal OS details, usernames, or configuration data.
+
+*Vulnerability Exposure: Outdated services might have known exploits available publicly.
+
+*Lateral Movement: Attackers can use open ports to move through the network after gaining access.
+
+___________________________________________________________________________________________________________________________________________________________________________________________________________
 
 ![img alt](https://github.com/swamy-2006/SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK/blob/489cbbf218469e70ad655e397597ea803cd15a7d/Screenshot%202025-08-04%20211854.png)
 
 
 Second Scan (nmap -sS -p 22,80,443 10.140.63.210)
-
 This was a quick SYN scan on ports 22, 80, and 443.
-
 The target is up.
 
 All three ports are closed:
-
-22 (SSH
+22 (SSH)
 
 80 (HTTP)
-
 443 (HTTPS)
-
 This means no web or SSH services are running on the system.
+___________________________________________________________________________________________________________________________________________________________________________________________________________
 
-
-
+__________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 WIRESHARK(http analysis)
 
@@ -117,7 +107,7 @@ Vulnerable by Design: This specific website (testphp.vulnweb.com) is a well-know
 
 Context and Significance
 This image shows the cause of the security risk illustrated in the corresponding Wireshark capture. When a user fills out this form and clicks "login," their credentials are sent across the network in plain text. This allows an attacker to easily intercept and read the sensitive data. It's the "open door" that makes a credential sniffing attack possible.
-
+___________________________________________________________________________________________________________________________________________________________________________________________________________
 ![img alt](https://github.com/swamy-2006/SCANNING-and-CAPTURING-using-NMAP-and-WIRESHARK/blob/main/Screenshot%202025-08-06%20171638.png)
 Wireshark Capture: Unencrypted HTTP Login
 This image is a screenshot from Wireshark, a network protocol analyzer. It demonstrates a significant security vulnerability: the transmission of login credentials in plain text over an unencrypted HTTP connection.
@@ -137,7 +127,10 @@ Password (pwd): admin
 
 
 http is  unsecure
+__
 
+___________________________________________________________________________________________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 #Nmap Scan Explanation
 
 Nmap is a network scanning tool used to discover hosts and services on a network.
@@ -154,7 +147,7 @@ SYN scans (-sS) send only SYN packets and wait for responses (RST or SYN-ACK) wi
 
 
 
-
+___________________________________________________________________________________________________________________________________________________________________________________________________________
 
 #Wireshark Packet Capture Explanation
 
@@ -187,7 +180,7 @@ This confirms the results from Nmap and provides low-level packet details for ve
 ■ DNS: Port 53
 
 
-
+___________________________________________________________________________________________________________________________________________________________________________________________________________
 #Network Reconnaissance & Scanning
 
 Network reconnaissance is the process of gathering information about systems and services in a network before performing security analysis. It helps identify active hosts, open ports, and running services to assess network security.
